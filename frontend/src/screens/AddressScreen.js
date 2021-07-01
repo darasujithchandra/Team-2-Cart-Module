@@ -22,9 +22,9 @@ function AddressScreen(props) {
   // form state for edit option
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [flatno, setflatno] = useState("");
-  const [area, setArea] = useState("");
+  const [pinCode, setPincode] = useState("");
+  const [houseNumber, setflatno] = useState("");
+  const [locality, setArea] = useState("");
   const [landmark, setLandmark] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -38,12 +38,12 @@ function AddressScreen(props) {
   const [mobstyle, setMobstyle] = useState({ borderColor: "transparent" });
 
   class sendaddress {
-    constructor(name, mobile, pincode, flatno, area, landmark, city, state) {
+    constructor(name, mobile, pinCode, houseNumber, locality, landmark, city, state) {
       this.name = name;
       this.mobile = mobile;
-      this.pincode = pincode;
-      this.flatno = flatno;
-      this.area = area;
+      this.pinCode = pinCode;
+      this.houseNumber = houseNumber;
+      this.locality = locality;
       this.landmark = landmark;
       this.city = city;
       this.state = state;
@@ -53,12 +53,12 @@ function AddressScreen(props) {
   const addAddress = () => {
     props.onAddAddress(
       new sendaddress(
-        name,
-        mobile,
-        pincode,
-        flatno,
-        area,
-        landmark,
+        // name,
+        // mobile,
+        pinCode,
+        houseNumber,
+        locality,
+        // landmark,
         city,
         state
       )
@@ -70,10 +70,10 @@ function AddressScreen(props) {
   const editaddress = (id, arr) => {
     console.log("id", id);
     setName(arr.name);
-    setArea(arr.area);
+    setArea(arr.locality);
     setMobile(arr.mobile);
-    setPincode(arr.pincode);
-    setflatno(arr.flatno);
+    setPincode(arr.pinCode);
+    setflatno(arr.houseNumber);
     setLandmark(arr.landmark);
     setCity(arr.city);
     setState(arr.state);
@@ -88,9 +88,9 @@ function AddressScreen(props) {
       new sendaddress(
         name,
         mobile,
-        pincode,
-        flatno,
-        area,
+        pinCode,
+        houseNumber,
+        locality,
         landmark,
         city,
         state
@@ -166,7 +166,7 @@ function AddressScreen(props) {
           ></input>
           <input
             style={pinstyle}
-            value={pincode}
+            value={pinCode}
             onChange={(e) => {
               setPincode(e.target.value);
             }}
@@ -182,14 +182,14 @@ function AddressScreen(props) {
             maxlength="6"
           ></input>
           <input
-            value={flatno}
+            value={houseNumber}
             onChange={(e) => {
               setflatno(e.target.value);
             }}
             placeholder="Flat, House no, Building, Comapany, Apartment"
           ></input>
           <input
-            value={area}
+            value={locality}
             onChange={(e) => {
               setArea(e.target.value);
             }}

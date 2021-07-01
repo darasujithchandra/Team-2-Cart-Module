@@ -67,7 +67,7 @@ export const addCartitemAction = (product) => {
 
 export const onCartLoadAction = () => {
     return dispatch => {
-        return fetch("http://localhost:9000/api/v1/cartItems/", {
+        return fetch("http://localhost:9000/api/v1/cartItems/" + "user1@gmail.com", {
             headers: {
                 Accept: "application/json",
                 "Content-type": "application/json",
@@ -88,7 +88,7 @@ export const onDeleteItemAction = (_id) => {
 
     console.log("ProductId", _id);
     return dispatch => {
-        return fetch("http://localhost:9000/api/v1/cartItems/" + _id, {
+        return fetch("http://localhost:9000/api/v1/cartItems/" + "user1@gmail.com" + "/" + _id, {
             headers: {
                 Accept: "application/json",
                 "Content-type": "application/json",
@@ -98,7 +98,7 @@ export const onDeleteItemAction = (_id) => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                fetch("http://localhost:9000/api/v1/cartItems/")
+                fetch("http://localhost:9000/api/v1/cartItems/" + "user1@gmail.com")
                     .then((res) => res.json())
                     .then((data) => {
 
@@ -115,7 +115,7 @@ export const onDeleteItemAction = (_id) => {
 export const onMoveItemAction = (cartItem, _id) => {
 
     return dispatch => {
-        return fetch('http://localhost:9000/api/v1/cartItems/' + _id, {
+        return fetch('http://localhost:9000/api/v1/cartItems/' + "user1@gmail.com" + "/" + _id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
@@ -124,7 +124,7 @@ export const onMoveItemAction = (cartItem, _id) => {
         })
             .then(res => {
                 console.log("cartItem", cartItem);
-                fetch('http://localhost:9000/api/v1/wishItems/', {
+                fetch('http://localhost:9000/api/v1/wishItems/' + "60db2a0c9f22fb1bc2c4c49d", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
@@ -310,25 +310,25 @@ export const OnEditAddressAction = (id, elem) => {
 
 export const adjustItemQty = (_id, value) => {
     return dispatch => {
-        return fetch("http://localhost:9000/api/v1/cartItems/" + _id, {
+        return fetch("http://localhost:9000/api/v1/cartItems/" + "60db2a0c9f22fb1bc2c4c49d" + "/" + _id, {
             headers: {
                 Accept: "application/json",
                 "Content-type": "application/json",
             },
             method: "PATCH",
 
-            body: JSON.stringify({ qty: value }),
+            body: JSON.stringify({ quantity: value }),
         })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                fetch("http://localhost:9000/api/v1/cartItems/")
+                fetch("http://localhost:9000/api/v1/cartItems/" + "60db2a0c9f22fb1bc2c4c49d")
                     .then((res) => res.json())
                     .then((data) => {
 
                         dispatch({
                             type: ADJUST_ITEM_QTY,
-                            payload: data.data
+                            payload: data.data.books
                         });
                     });
             });

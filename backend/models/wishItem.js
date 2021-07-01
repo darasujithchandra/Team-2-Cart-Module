@@ -3,26 +3,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const WishItemSchema = new Schema({
 
-    name: {
+    email: {
         type: String,
-        required: true,
+        // ref:'User',
     },
-    description: {
-        type: String,
-
-    },
-    price: {
-        type: Number,
-        required: true,
-    },
-    countInStock: {
-        type: Number,
-        required: true,
-    },
-    imageUrl: {
-        type: String,
-
-    },
+    books: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'products',
+        }
+    ]
 });
 
 const WishItem = mongoose.model('WishItem', WishItemSchema);

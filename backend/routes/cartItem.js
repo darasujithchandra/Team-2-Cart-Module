@@ -15,12 +15,12 @@ const {
 const advancedFind = require("../middleware/advancedFind");
 
 router
-  .route("/")
-  .get(advancedFind(CartItem), fetchAllCartItems)
+  .route("/:email")
+  .get(fetchAllCartItems)
   .post(addCartItems);
 
-router.delete("/:id", delCartItems);
+router.delete("/:email", delCartItems);
 
-router.patch("/:id", patchCartItems);
+router.patch("/:email", patchCartItems);
 
 module.exports = router;

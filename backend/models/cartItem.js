@@ -4,29 +4,27 @@ const Schema = mongoose.Schema;
 
 const CartItemSchema = new Schema({
 
-    name: {
+    email: {
         type: String,
-        required: true,
+        // ref:'User',
+        // unique:true
     },
-    description: {
-        type: String,
-
-    },
-    price: {
+    amount: {
         type: Number,
-        required: true,
+        default: 10
     },
-    countInStock: {
-        type: Number,
-        required: true,
-    },
-    imageUrl: {
-        type: String,
-
-    },
-    qty: {
-        type: Number,
-    }
+    books: [
+        {
+            quantity: {
+                type: Number,
+                default: 1
+            },
+            bookid: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'products',
+            }
+        }
+    ]
 });
 
 const CartItem = mongoose.model('CartItem', CartItemSchema);

@@ -20,7 +20,7 @@ const Item = ({ item, adjustQty, moveTo, remove }) => {
 
 
 
-    const [input, setInput] = useState(item.qty)
+    const [input, setInput] = useState(item.quantity)
 
 
     const onChangeHandler = (e) => {
@@ -46,21 +46,21 @@ const Item = ({ item, adjustQty, moveTo, remove }) => {
                     <Row>
 
                         <Col md={1} >
-                            <Link to={`/`}>
+                            {/* <Link to={`/`}>
                                 <Image src={item.imageUrl} fluid rounded />
-                            </Link>
+                            </Link> */}
                         </Col>
 
                         <Col md={3} >
-                            <Link to={`/`}>{item.name}</Link>
+                            <Link to={`/`}>{item.title}   </Link>
                         </Col>
 
                         <Col md={1}>${item.price}</Col>
 
-                        <Col md="2">
+                        <Col md="1">
                             <input
                                 min="1"
-                                max={item.countInStock}
+                                max={item.available}
                                 type="number"
                                 id="qty"
                                 name="qty"
@@ -69,11 +69,11 @@ const Item = ({ item, adjustQty, moveTo, remove }) => {
                             />
                         </Col>
 
-                        <Col md={3} >
+                        {/* <Col md={1} >
                             <Button onClick={move} type="button" className="btn btn-primary">
                                 Move To Wishlist
                             </Button>
-                        </Col>
+                        </Col> */}
                         <Col >
                             <Button onClick={del} type="button" className="btn btn-danger">
                                 <i

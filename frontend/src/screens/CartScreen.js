@@ -37,7 +37,7 @@ const CartScreen = (props) => {
 
     props.Books.forEach((item) => {
       console.log("qty of each change", item.qty);
-      items += item.qty;
+      items += item.qty * 1;
       price += item.qty * item.price;
       charge += item.qty * 10;
       cart += item.qty * item.price + item.qty * 10;
@@ -48,6 +48,7 @@ const CartScreen = (props) => {
     setCharges(charge);
     setCarttotal(cart);
     props.OrderSummary(totalPrice, totalItems, charges, cartTotal);
+    // props.amount(totalPrice)
   }, [
     props.Books,
     totalPrice,
@@ -68,64 +69,63 @@ const CartScreen = (props) => {
     props.onMoveItem(cartItem, _id);
   };
 
-  const number = props.Books.length;
+  // const number = props.Books.length;
 
   return (
     <div>
-      {number ? (
-        <Row>
-          <h1>
-            <span> Shopping Cart </span>
-          </h1>
-          {props.Books.map(function (item) {
-            return (
-              <Col sm={8}>
-                <CartItem
-                  key={item._id}
-                  item={item}
-                  moveTo={moveToWishlist}
-                  remove={deleteCartItem}
-                />
-              </Col>
-            );
-          })}
-          <br></br>
-          <Col sm={3}>
-            <Card>
-              <ListGroup variant="flush">
-                <ListGroupItem>
-                  <FormControl
-                    className="form-control me-sm-2"
-                    type="text"
-                    placeholder="Apply Coupon"
-                    style={{ height: "50px" }}
-                    className="mr-sm-2"
-                  />
-                </ListGroupItem>
-                <ListGroupItem>
-                  <Button
-                    className="btn btn-primary my-2 my-sm-0"
-                    type="submit"
-                  >
-                    Apply Coupon
-                  </Button>
-                </ListGroupItem>
 
-                <ListGroupItem>
-                  <OrderSummary />
-                </ListGroupItem>
-                <Link to="/address">
-                  <Button type="button" className="btn-block">
-                    Proceed to checkOut
-                  </Button>
-                </Link>
-              </ListGroup>
-            </Card>
-          </Col>
-        </Row>
-      ) : (
-        <EmptyCart></EmptyCart>
-      )}
+      <Row>
+        <h1>
+          <span> Shopping Cart </span>
+        </h1>
+        {console.log("cartlist", props.Books)}
+        {props.Books.map(function (item) {
+          return (
+            <Col sm={8}>
+              <CartItem
+                key={item._id}
+                item={item}
+                moveTo={moveToWishlist}
+                remove={deleteCartItem}
+              />
+            </Col>
+          );
+        })}
+        <br></br>
+        <Col sm={3}>
+          <Card>
+            <ListGroup variant="flush">
+              <ListGroupItem>
+                <FormControl
+                  className="form-control me-sm-2"
+                  type="text"
+                  placeholder="Apply Coupon"
+                  style={{ height: "50px" }}
+                  className="mr-sm-2"
+                />
+              </ListGroupItem>
+              <ListGroupItem>
+                <Button
+                  className="btn btn-primary my-2 my-sm-0"
+                  type="submit"
+                >
+                  Apply Coupon
+                </Button>
+              </ListGroupItem>
+
+              <ListGroupItem>
+                <OrderSummary />
+              </ListGroupItem>
+              <Link to="/address">
+                <Button type="button" className="btn-block">
+                  Proceed to checkOut
+                </Button>
+              </Link>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
+
     </div>
   );
 };

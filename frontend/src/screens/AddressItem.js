@@ -54,21 +54,21 @@ function Item1(props) {
 
                             <Col>
                                 <p className="name">{props.arr.name}</p>
-                                <p>{props.arr.flat}</p>
+                                <p>{props.arr.houseNumber}</p>
 
                                 {props.arr.landmark ? (
                                     <p>
-                                        {props.arr.area}, {props.arr.landmark}
+                                        {props.arr.locality}, {props.arr.landmark}
                                     </p>
                                 ) : (
-                                    <p>{props.arr.area}</p>
+                                    <p>{props.arr.locality}</p>
                                 )}
                                 {props.arr.city ? (
                                     <p>
-                                        {props.arr.city} ,{props.arr.pincode}
+                                        {props.arr.city} ,{props.arr.pinCode}
                                     </p>
                                 ) : (
-                                    <p>{props.arr.pincode}</p>
+                                    <p>{props.arr.pinCode}</p>
                                 )}
 
                                 {props.arr.state ? <p>{props.arr.state}, India,{props.arr.mobile}</p> : <p>India,{props.arr.mobile}</p>}
